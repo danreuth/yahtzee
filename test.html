@@ -1,13 +1,22 @@
 <html>
 	<head>
 		<script src="Random.js" type="text/javascript"></script>
+		<script src="Dice.js" type="text/javascript"></script>
+		<script src="Roller.js" type="text/javascript"></script>
 	</head>
 	<body>
 		<script type="text/javascript">
-			console.log(catalyst.yahtzee.Random.getRandomBetween(1,10));
-			console.log(catalyst.yahtzee.Random.getRandomBetween(10,100));
-			console.log(catalyst.yahtzee.Random.getRandomBetween(200,1000));
-			console.log(catalyst.yahtzee.Random.getRandomBetween(1,5));
+			die1 = new catalyst.yahtzee.Dice(6);
+			die2 = new catalyst.yahtzee.Dice(10);
+			die3 = new catalyst.yahtzee.Dice(4);
+			var diceArray = new Array ( die1, die2, die3 );
+			console.log(diceArray);
+			catalyst.yahtzee.Roller.rollDice( diceArray );
+			console.log(die1);
+			console.log(die2);
+			console.log(die3);
+			console.log(diceArray);
+			
 		</script>
 	</body>
 </html>

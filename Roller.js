@@ -1,27 +1,19 @@
 var catalyst = catalyst || {};
 catalyst.yahtzee = catalyst.yahtzee || {};
 
-catalyst.yahtzee.Roller = (function (Dice) {
+catalyst.yahtzee.Roller = (function ( Dice, Random ) {
 	function Roller( sides ) {
-		var numSides = sides;
-		var roll = true;
-
-		this.value = 1;
-
-		this.getNumSides = function() {
-			return numSides;
-		};
-		this.shouldRoll = function() {
-			return roll;
-		};
-		this.setRoll = function( newRollValue ) {
-			roll = newRollValue;
-		}
+		
 	}
 
 	Roller.rollDice = function( diceSet ) {
+		for( i = 0; i < diceSet.length; i++ ) {
+			if( diceSet[i].shouldRoll ) {
+				diceSet[i].value = Random.getRandomBetween( 1, diceSet[i].getNumSides() );
+			}		
+		}
 
 	};
 
 	return Roller;
-})(catalyst.yahtzee.Dice);
+})(catalyst.yahtzee.Dice, catalyst.yahtzee.Random);
