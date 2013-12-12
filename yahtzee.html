@@ -2,23 +2,144 @@
 	<head>
 		<title>Yahtzee</title>
 		<link rel="stylesheet" type="text/css" href="css/main.css">
-		<script src="js/Random.js"></script>
-		<script src="js/Display.js"></script>
-		<script src="js/init.js"></script>
+		<script src="js/lib/jquery-1.10.2.js"></script>
 		<script src="js/CONSTANTS.js"></script>
+		<script src="js/Random.js"></script>
+		<script src="js/ScoreCard.js"></script>
+		<script src="js/Player.js"></script>
+		<script src="js/Display.js"></script>
+		
 		<script src="js/Dice.js"></script>
 		<script src="js/Roller.js"></script>
 		<script src="js/Game.js"></script>
 		<script src="js/Input.js"></script>
-		
-		
-		
-		<script src="js/lib/jquery-1.10.2.js"></script>
-		<script>
-			$( document ).ready( init );
-    	</script>
+		<script src="js/init.js"></script>
 	</head>
 	<body>
+		<div id="scoreCard">
+			<table>
+				<tr id="aces">
+					<td id="acesText">
+					</td>
+					<td id="acesValue">
+					</td>
+				</tr>
+				<tr id="twos">
+					<td id="twosText">
+					</td>
+					<td id="twosValue">
+					</td>
+				</tr>
+				<tr id="threes">
+					<td id="threesText">
+					</td>
+					<td id="threesValue">
+					</td>
+				</tr>
+				<tr id="fours">
+					<td id="foursText">
+					</td>
+					<td id="foursValue">
+					</td>
+				</tr>
+				<tr id="fives">
+					<td id="fivesText">
+					</td>
+					<td id="fivesValue">
+					</td>
+				</tr>
+				<tr id="sixes">
+					<td id="sixesText">
+					</td>
+					<td id="sixesValue">
+					</td>
+				</tr>
+				<tr id="subTotalUpper">
+					<td id="subTotalUpperText">
+					</td>
+					<td id="subTotalUpperValue">
+					</td>
+				</tr>
+				<tr id="bonus">
+					<td id="bonusText">
+					</td>
+					<td id="bonusValue">
+					</td>
+				</tr>
+				<tr class="totalUpper">
+					<td class="totalUpperText">
+					</td>
+					<td class="totalUpperValue">
+					</td>
+				</tr>
+				<tr id="threeOfAKind">
+					<td id="threeOfAKindText">
+					</td>
+					<td id="threeOfAKindValue">
+					</td>
+				</tr>
+				<tr id="fourOfAKind">
+					<td id="fourOfAKindText">
+					</td>
+					<td id="fourOfAKindValue">
+					</td>
+				</tr>
+				<tr id="fullHouse">
+					<td id="fullHouseText">
+					</td>
+					<td id="fullHouseValue">
+					</td>
+				</tr>
+				<tr id="smallStaight">
+					<td id="smallStraightText">
+					</td>
+					<td id="smallStraightValue">
+					</td>
+				</tr>
+				<tr id="largeStraight">
+					<td id="largeStraightText">
+					</td>
+					<td id="largeStraightValue">
+					</td>
+				</tr>
+				<tr id="yahtzee">
+					<td id="yahtzeeText">
+					</td>
+					<td id="yahtzeeValue">
+					</td>
+				</tr>
+				<tr id="chance">
+					<td id="chanceText">
+					</td>
+					<td id="chanceValue">
+					</td>
+				</tr>
+				<tr id="yahtzeeBonus">
+					<td id="yahtzeeBonusText">
+					</td>
+					<td id="yahtzeeBonusValue">
+					</td>
+				</tr>
+				<tr id="totalLower">
+					<td id="totalLowerText">
+					</td>
+					<td id="totalLowerValue">
+					</td>
+				</tr>
+				<tr class="totalUpper">
+					<td class="totalUpperText">
+					</td>
+					<td class="totalUpperValue">
+					</td>
+				</tr>
+				<tr id="grandTotal">
+					<td id="grandTotalText">
+					</td>
+					<td id="grandTotalValue">
+					</td>
+				</tr>
+			</table>
+		</div>
 		<div id="diceContainer">
 			<img id="die0" src="images/1.png">
 			<img id="die1" src="images/1.png">

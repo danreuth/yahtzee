@@ -1,11 +1,13 @@
 var catalyst = catalyst || {};
 catalyst.yahtzee = catalyst.yahtzee || {};
 
-catalyst.yahtzee.Game = (function (CONSTANTS, Dice, Roller, Display) {
+catalyst.yahtzee.Game = (function (CONSTANTS, Dice, Roller, Display, Player) {
 	var diceArray = new Array();
 	for( var i = 0; i < CONSTANTS.NUMBER_DICE; i++ ) {
 		diceArray[i] = new Dice( CONSTANTS.DICE_SIDES );
 	}
+  var player = new Player();
+  
 	return {
     rollDice: function() {
     	
@@ -15,7 +17,10 @@ catalyst.yahtzee.Game = (function (CONSTANTS, Dice, Roller, Display) {
     dieClicked: function( dieNumber ) {
     	diceArray[dieNumber].toggleRoll();
     	Display.showDice( diceArray );
+    },
+    setUp: function() {
+      Display.showScoreCard( player.scoreCard );
     }
   };  
 	
-})(catalyst.yahtzee.CONSTANTS, catalyst.yahtzee.Dice, catalyst.yahtzee.Roller, catalyst.yahtzee.Display);
+})(catalyst.yahtzee.CONSTANTS, catalyst.yahtzee.Dice, catalyst.yahtzee.Roller, catalyst.yahtzee.Display, catalyst.yahtzee.Player);
