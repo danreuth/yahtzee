@@ -7,8 +7,8 @@ catalyst.yahtzee.Roller = (function ( Dice, Random ) {
 	}
 
 	Roller.rollDice = function( diceSet ) {
-		for( i = 0; i < diceSet.length; i++ ) {
-			if( diceSet[i].shouldRoll ) {
+		for( var i = 0; i < diceSet.length; i++ ) {
+			if( diceSet[i].shouldRoll() == true ) {
 				diceSet[i].value = Random( 1, diceSet[i].getNumSides() );
 			}		
 		}

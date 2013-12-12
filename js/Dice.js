@@ -16,6 +16,9 @@ catalyst.yahtzee.Dice = (function () {
 		};
 		this.setRoll = function( newRollValue ) {
 			roll = newRollValue;
+		};
+		this.toggleRoll = function() {
+			roll = !roll;
 		}
 	}
 

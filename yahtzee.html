@@ -1,11 +1,33 @@
 <html>
 	<head>
 		<title>Yahtzee</title>
-
+		<link rel="stylesheet" type="text/css" href="css/main.css">
+		<script src="js/Random.js"></script>
+		<script src="js/Display.js"></script>
+		<script src="js/init.js"></script>
+		<script src="js/CONSTANTS.js"></script>
+		<script src="js/Dice.js"></script>
+		<script src="js/Roller.js"></script>
+		<script src="js/Game.js"></script>
+		<script src="js/Input.js"></script>
+		
+		
+		
+		<script src="js/lib/jquery-1.10.2.js"></script>
+		<script>
+			$( document ).ready( init );
+    	</script>
 	</head>
 	<body>
 		<div id="diceContainer">
-			<img src="images/1.png">
+			<img id="die0" src="images/1.png">
+			<img id="die1" src="images/1.png">
+			<img id="die2" src="images/1.png">
+			<img id="die3" src="images/1.png">
+			<img id="die4" src="images/1.png">
+		</div>
+		<div id="rollButton">
+			Roll
 		</div>
 	</body>
 </html>
