@@ -9,20 +9,15 @@ catalyst.yahtzee.Input = (function (Game) {
         Game.rollDice();
       
     },
-    die0Click: function() {
-      Game.dieClicked( 0 );
+    diceClick: function() {
+      console.log($(this));
+      
+      
+      Game.dieClicked( $(this).attr('id').charAt(3) );
     },
-    die1Click: function() {
-      Game.dieClicked( 1 );
-    },
-    die2Click: function() {
-      Game.dieClicked( 2 );
-    },
-    die3Click: function() {
-      Game.dieClicked( 3 );
-    },
-    die4Click: function() {
-      Game.dieClicked( 4 );
+    
+    acesClick: function() {
+      Game.scoreBoxClicked( CONSTANTS.ACES );
     }
   };   
 

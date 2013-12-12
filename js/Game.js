@@ -13,6 +13,7 @@ catalyst.yahtzee.Game = (function (CONSTANTS, Dice, Roller, Display, Player) {
     	
       Roller.rollDice( diceArray );
       Display.showDice( diceArray );
+      player.scoreCard.updateScores( diceArray );
     },
     dieClicked: function( dieNumber ) {
     	diceArray[dieNumber].toggleRoll();
@@ -20,6 +21,9 @@ catalyst.yahtzee.Game = (function (CONSTANTS, Dice, Roller, Display, Player) {
     },
     setUp: function() {
       Display.showScoreCard( player.scoreCard );
+    },
+    scoreBoxClicked: function( box ) {
+
     }
   };  
 	
