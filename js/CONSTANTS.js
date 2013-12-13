@@ -4,6 +4,12 @@ catalyst.yahtzee = catalyst.yahtzee || {};
 catalyst.yahtzee.CONSTANTS = {
 	NUMBER_DICE : 5,
 	DICE_SIDES : 6,
+	ACES_VALUE : 1,
+	TWOS_VALUE : 2,
+	THREES_VALUE : 3,
+	FOURS_VALUE : 4,
+	FIVES_VALUE : 5,
+	SIXES_VALUE : 6,
 	ACES : 'Aces',
 	TWOS : 'Twos',
 	THREES : 'Threes',
