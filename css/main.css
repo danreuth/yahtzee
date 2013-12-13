@@ -9,10 +9,26 @@
 	font-size: 1.5em;
 }
 
-#diceContainer {
-	
-
+/*  Working on css class switch
+.1 {
+	background-image:url('images/1.png');
 }
+.2 {
+	background-image:url('images/2.png');
+}
+.3 {
+	background-image:url('images/3.png');
+}
+.4 {
+	background-image:url('images/4.png');
+}
+.5 {
+	background-image:url('images/5.png');
+}
+.6 {
+	background-image:url('images/6.png');	
+}
+*/
 .scoreDesc {
 	background-color: grey;
 }

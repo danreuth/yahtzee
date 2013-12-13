@@ -3,6 +3,9 @@ catalyst.yahtzee = catalyst.yahtzee || {};
 
 catalyst.yahtzee.ScoreCard = (function (CONSTANTS, Dice) {
 	function ScoreCard() {
+		var haveFirstYahtzee = false;
+		var numberBonusYahtzees = 0;
+		var bonusYahtzeeInPlay = false;
 		this.rows = [
 		{
 			text: CONSTANTS.ACES,
@@ -121,7 +124,7 @@ catalyst.yahtzee.ScoreCard = (function (CONSTANTS, Dice) {
 			filled: false,
 			selector: CONSTANTS.FULL_HOUSE_SELECTOR,
 			calculate: function( diceSet ) {
-				if( isFullHouse( diceSet) ) {
+				if( isFullHouse( diceSet) || isXOfAKind( diceSet, 5 ) ) {
 					this.value = CONSTANTS.FULL_HOUSE_SCORE;
 				} else {
 					this.value = 0;
@@ -134,7 +137,7 @@ catalyst.yahtzee.ScoreCard = (function (CONSTANTS, Dice) {
 			filled: false,
 			selector: CONSTANTS.SMALL_STRAIGHT_SELECTOR,
 			calculate: function( diceSet ) {
-				if( isStraight( diceSet, CONSTANTS.SMALL_STRAIGHT_LENGTH )) {
+				if( isStraight( diceSet, CONSTANTS.SMALL_STRAIGHT_LENGTH ) || isXOfAKind( diceSet, 5 )) {
 					this.value = CONSTANTS.SMALL_STRAIGHT_SCORE;
 				} else {
 					this.value = 0;
@@ -147,7 +150,7 @@ catalyst.yahtzee.ScoreCard = (function (CONSTANTS, Dice) {
 			filled: false,
 			selector: CONSTANTS.LARGE_STRAIGHT_SELECTOR,
 			calculate: function( diceSet ) {
-				if( isStraight( diceSet, CONSTANTS.LARGE_STRAIGHT_LENGTH )) {
+				if( isStraight( diceSet, CONSTANTS.LARGE_STRAIGHT_LENGTH ) || isXOfAKind( diceSet, 5 )) {
 					this.value = CONSTANTS.LARGE_STRAIGHT_SCORE;
 				} else {
 					this.value = 0;
@@ -180,10 +183,15 @@ catalyst.yahtzee.ScoreCard = (function (CONSTANTS, Dice) {
 		{
 			text: CONSTANTS.YAHTZEE_BONUS,
 			value: 0,
+			holdValue: 0,
 			filled: false,
 			selector: CONSTANTS.YAHTZEE_BONUS_SELECTOR,
 			calculate: function( diceSet ) {
 
+				if(isXOfAKind( diceSet, 5 ) && haveFirstYahtzee === true ) {
+					bonusYahtzeeInPlay = true;
+					
+				} 
 			}
 		},
 		{
@@ -229,16 +237,25 @@ catalyst.yahtzee.ScoreCard = (function (CONSTANTS, Dice) {
 			}
 			this.rows[8].value = this.rows[6].value + this.rows[7].value;
 			total = 0;
+			this.rows[16].value = CONSTANTS.YAHTZEE_BONUS_SCORE * numberBonusYahtzees;
 			for(var j = 9; j < 17; j++) {
 				total += this.rows[j].value;
 			}
+			
 			this.rows[17].value = total;
 			this.rows[18].value = this.rows[17].value + this.rows[8].value;
 		}
 
 		this.fillBox = function ( box ) {
+			if(bonusYahtzeeInPlay) {
+				numberBonusYahtzees++;
+				bonusYahtzeeInPlay = false;
+			}
 			for(var i = 0; i < this.rows.length; i++) {
 				if( this.rows[i].selector === box ) {
+					if(box === CONSTANTS.YAHTZEE_SELECTOR && this.rows[i].filled === false && this.rows[i].value === CONSTANTS.YAHTZEE_SCORE ) {
+						haveFirstYahtzee = true;
+					}
 					this.rows[i].filled = true;
 				}
 			}
@@ -261,7 +278,7 @@ catalyst.yahtzee.ScoreCard = (function (CONSTANTS, Dice) {
 			}
 		}
 		var calcNumbers = function( diceSet, number ) {
-			console.log("In calc number");
+			
 			var total = 0;
 			for(var i = 0; i < diceSet.length; i++) {
 				if(diceSet[i].value === number) {
@@ -287,7 +304,7 @@ catalyst.yahtzee.ScoreCard = (function (CONSTANTS, Dice) {
 				numberSet[diceSet[i].value]++;
 			}
 			var returnValue = false;
-			for(var j = 1; j <= diceSet.length; j++) {
+			for(var j = 1; j <= numberSet.length; j++) {
 				if(numberSet[j] >= x) {
 					returnValue = true;
 				}
@@ -302,7 +319,7 @@ catalyst.yahtzee.ScoreCard = (function (CONSTANTS, Dice) {
 			}
 			var threeOfKind = false;
 			var pair = false;
-			for(var j = 1; j <= diceSet.length; j++) {
+			for(var j = 1; j <= numberSet.length; j++) {
 				if(numberSet[j] === 3) {
 					threeOfKind = true;
 				}
@@ -321,7 +338,7 @@ catalyst.yahtzee.ScoreCard = (function (CONSTANTS, Dice) {
 			}
 			var count = 0;
 			var straight = false;
-			for(var j = 1; j <= diceSet.length; j++) {
+			for(var j = 1; j <= numberSet.length; j++) {
 				if(numberSet[j] >= 1) {
 					count++;
 				} else {
