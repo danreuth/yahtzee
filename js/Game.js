@@ -24,7 +24,10 @@ catalyst.yahtzee.Game = (function (CONSTANTS, Dice, Roller, Display, Player) {
       Display.showScoreCard( player.scoreCard );
     },
     scoreBoxClicked: function( box ) {
-
+      if(player.scoreCard.isBoxFilled( box ) !== true ) {
+        player.endTurn( box );
+        Display.showScoreCard( player.scoreCard );
+      }
     }
   };  
 	

@@ -10,14 +10,16 @@ catalyst.yahtzee.Input = (function (Game) {
       
     },
     diceClick: function() {
-      console.log($(this));
-      
-      
       Game.dieClicked( $(this).attr('id').charAt(3) );
     },
     
     acesClick: function() {
       Game.scoreBoxClicked( CONSTANTS.ACES );
+    },
+
+    scoreBoxClick: function() {
+      var element = '#' + $(this).attr('id');
+      Game.scoreBoxClicked( element.substring(0, element.length - 5) );
     }
   };   
 

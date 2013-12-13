@@ -2,3 +2,30 @@
 	height: 100px;
 	width: 100px;
 }
+
+#scoreCard td {
+	width: 200px;
+	float: left;
+	font-size: 1.5em;
+}
+
+#diceContainer {
+	
+
+}
+.scoreDesc {
+	background-color: grey;
+}
+
+.totalBox {
+	background-color: blue;
+}
+
+.totalDesc {
+	background-color: blue;
+}
+
+.scoreBox {
+	background-color: green;
+}
+

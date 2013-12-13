@@ -19,6 +19,12 @@ catalyst.yahtzee.Display = (function (Dice, CONSTANTS, ScoreCard) {
       for(var i = 0; i < card.rows.length; i++) {
         $( card.rows[i].selector + 'Text' ).text( card.rows[i].text );
         $( card.rows[i].selector + 'Value' ).text( card.rows[i].value );
+        if(card.rows[i].total === undefined && card.rows[i].filled === false) {
+          $( card.rows[i].selector + 'Value').css({"background-color":"red"});
+        }
+        if(card.rows[i].filled === true) {
+          $( card.rows[i].selector + 'Value').css({"background-color":"green"});
+        }
       }
     }
    

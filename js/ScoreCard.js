@@ -63,6 +63,7 @@ catalyst.yahtzee.ScoreCard = (function (CONSTANTS, Dice) {
 			text : CONSTANTS.UPPER_SUB,
 			value : 0,
 			filled: false,
+			total: true,
 			selector: CONSTANTS.UPPER_SUB_SELECTOR,
 			calculate: function( diceSet ) {
 
@@ -72,6 +73,7 @@ catalyst.yahtzee.ScoreCard = (function (CONSTANTS, Dice) {
 			text : CONSTANTS.BONUS,
 			value : 0,
 			filled: false,
+			total: true,
 			selector: CONSTANTS.BONUS_SELECTOR,
 			calculate: function( diceSet ) {
 
@@ -81,6 +83,7 @@ catalyst.yahtzee.ScoreCard = (function (CONSTANTS, Dice) {
 			text : CONSTANTS.UPPER_TOTAL,
 			value : 0,
 			filled: false,
+			total: true,
 			selector: CONSTANTS.UPPER_TOTAL_SELECTOR,
 			calculate: function( diceSet ) {
 
@@ -158,7 +161,7 @@ catalyst.yahtzee.ScoreCard = (function (CONSTANTS, Dice) {
 			selector: CONSTANTS.YAHTZEE_SELECTOR,
 			calculate: function( diceSet ) {
 				if(isXOfAKind( diceSet, 5 )) {
-					this.value = totalDice( diceSet );
+					this.value = CONSTANTS.YAHTZEE_SCORE;
 				} else {
 					this.value = 0;
 				}
@@ -187,6 +190,7 @@ catalyst.yahtzee.ScoreCard = (function (CONSTANTS, Dice) {
 			text : CONSTANTS.LOWER_TOTAL,
 			value: 0,
 			filled: false,
+			total: true,
 			selector: CONSTANTS.LOWER_TOTAL_SELECTOR,
 			calculate: function( diceSet ) {
 
@@ -196,6 +200,7 @@ catalyst.yahtzee.ScoreCard = (function (CONSTANTS, Dice) {
 			text : CONSTANTS.GRAND_TOTAL,
 			value: 0,
 			filled: false,
+			total: true,
 			selector: CONSTANTS.GRAND_TOTAL_SELECTOR,
 			calculate: function( diceSet ) {
 
@@ -205,10 +210,56 @@ catalyst.yahtzee.ScoreCard = (function (CONSTANTS, Dice) {
 
 		this.updateScores = function( diceSet ) {
 			for(var i = 0; i < this.rows.length; i++) {
-				this.rows[i].calculate( diceSet );
+				if(this.rows[i].filled === false) {
+					this.rows[i].calculate( diceSet );
+				}
 			}
 		}
 
+		this.calcTotals = function() {
+			var total = 0;
+			for(var i = 0; i < 6; i++) {
+				total += this.rows[i].value;
+			}	
+			this.rows[6].value = total;
+			if(total >= CONSTANTS.BONUS_BOUND) {
+				this.rows[7].value = 35;
+			} else {
+				this.rows[7].value = 0;
+			}
+			this.rows[8].value = this.rows[6].value + this.rows[7].value;
+			total = 0;
+			for(var j = 9; j < 17; j++) {
+				total += this.rows[j].value;
+			}
+			this.rows[17].value = total;
+			this.rows[18].value = this.rows[17].value + this.rows[8].value;
+		}
+
+		this.fillBox = function ( box ) {
+			for(var i = 0; i < this.rows.length; i++) {
+				if( this.rows[i].selector === box ) {
+					this.rows[i].filled = true;
+				}
+			}
+		}
+
+		this.isBoxFilled = function ( box ) {
+			var fill = false;
+			for(var i = 0; i < this.rows.length; i++) {
+				if(this.rows[i].selector === box && this.rows[i].filled === true) {
+					fill = true;
+				}
+			}
+			return fill;
+		}
+		this.zeroScores = function () {
+			for(var i = 0; i < this.rows.length; i++) {
+				if(this.rows[i].filled === false) {
+					this.rows[i].value = 0;
+				}
+			}
+		}
 		var calcNumbers = function( diceSet, number ) {
 			console.log("In calc number");
 			var total = 0;
