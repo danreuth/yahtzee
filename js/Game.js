@@ -8,6 +8,11 @@ catalyst.yahtzee.Game = (function (CONSTANTS, Dice, Roller, Display, Player) {
 	}
   var player = new Player();
   
+  function resetDice() {
+    for(var i = 0; i < CONSTANTS.NUMBER_DICE; i++) {
+      diceArray[i].setRoll( true );
+    }
+  }
 	return {
     rollDice: function() {
     	
@@ -27,6 +32,8 @@ catalyst.yahtzee.Game = (function (CONSTANTS, Dice, Roller, Display, Player) {
       if(player.scoreCard.isBoxFilled( box ) !== true ) {
         player.endTurn( box );
         Display.showScoreCard( player.scoreCard );
+        resetDice();
+        Display.showDice( diceArray );
       }
     }
   };  
