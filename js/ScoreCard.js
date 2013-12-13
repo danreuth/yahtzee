@@ -118,7 +118,11 @@ catalyst.yahtzee.ScoreCard = (function (CONSTANTS, Dice) {
 			filled: false,
 			selector: CONSTANTS.FULL_HOUSE_SELECTOR,
 			calculate: function( diceSet ) {
-
+				if( isFullHouse( diceSet) ) {
+					this.value = CONSTANTS.FULL_HOUSE_SCORE;
+				} else {
+					this.value = 0;
+				}
 			}
 		},
 		{
@@ -127,7 +131,11 @@ catalyst.yahtzee.ScoreCard = (function (CONSTANTS, Dice) {
 			filled: false,
 			selector: CONSTANTS.SMALL_STRAIGHT_SELECTOR,
 			calculate: function( diceSet ) {
-
+				if( isStraight( diceSet, CONSTANTS.SMALL_STRAIGHT_LENGTH )) {
+					this.value = CONSTANTS.SMALL_STRAIGHT_SCORE;
+				} else {
+					this.value = 0;
+				}
 			}
 		},
 		{
@@ -136,7 +144,11 @@ catalyst.yahtzee.ScoreCard = (function (CONSTANTS, Dice) {
 			filled: false,
 			selector: CONSTANTS.LARGE_STRAIGHT_SELECTOR,
 			calculate: function( diceSet ) {
-
+				if( isStraight( diceSet, CONSTANTS.LARGE_STRAIGHT_LENGTH )) {
+					this.value = CONSTANTS.LARGE_STRAIGHT_SCORE;
+				} else {
+					this.value = 0;
+				}
 			}
 		},
 		{
@@ -217,25 +229,59 @@ catalyst.yahtzee.ScoreCard = (function (CONSTANTS, Dice) {
 		}
 
 		var isXOfAKind = function( diceSet, x ) {
-			var total = 0;
-			var testCase = 0;
+			
+			var numberSet = [ 0, 0, 0, 0, 0, 0, 0 ];
+
 			for(var i = 0; i < diceSet.length; i++) {
-				if(total >=x) {
-					return true;
-				}
-				testCase = diceSet[i].value;
-				for(var j = i + 1; j < diceSet.length; j++) {
-					if(testCase === diceSet[j].value) {
-						total++;
-					}
+				numberSet[diceSet[i].value]++;
+			}
+			var returnValue = false;
+			for(var j = 1; j <= diceSet.length; j++) {
+				if(numberSet[j] >= x) {
+					returnValue = true;
 				}
 			}
-			if(total >= x) {
-				return true;
-			} else {
-				return false;
-			}
+			return returnValue;	
 		}
+		 var isFullHouse = function( diceSet ) {
+		 	var numberSet = [ 0, 0, 0, 0, 0, 0, 0 ];
+
+			for(var i = 0; i < diceSet.length; i++) {
+				numberSet[diceSet[i].value]++;
+			}
+			var threeOfKind = false;
+			var pair = false;
+			for(var j = 1; j <= diceSet.length; j++) {
+				if(numberSet[j] === 3) {
+					threeOfKind = true;
+				}
+				if(numberSet[j] === 2) {
+					pair = true;
+				}
+			}
+			return threeOfKind && pair;
+		 }
+
+		 var isStraight = function( diceSet, type) {
+		 	var numberSet = [ 0, 0, 0, 0, 0, 0, 0 ];
+
+			for(var i = 0; i < diceSet.length; i++) {
+				numberSet[diceSet[i].value]++;
+			}
+			var count = 0;
+			var straight = false;
+			for(var j = 1; j <= diceSet.length; j++) {
+				if(numberSet[j] >= 1) {
+					count++;
+				} else {
+					count = 0;
+				}
+				if(count === type) {
+					straight = true;
+				}
+			}
+			return straight;
+		 }
 	}
 
 
