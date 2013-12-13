@@ -2,33 +2,42 @@ describe("ScoreCard", function () {
 
 
 	it("total dice", function () {
-		var card = new ScoreCard();
-		expect(card.totalDice( [ {value : 1}, {value: 2}, {value: 1}, {value: 3}, {value: 1}] )).toBe(8);
+		
+		expect(catalyst.yahtzee.CardServices.totalDice( [ {value : 1}, {value: 2}, {value: 1}, {value: 3}, {value: 1}] )).toBe(8);
 	})
 
-	/*it("upperBoard Ones function", function (){
+	it("calc numbers", function () {
+		
+		expect(catalyst.yahtzee.CardServices.calcNumbers( [ {value : 1}, {value: 2}, {value: 1}, {value: 3}, {value: 1}], 1 )).toBe(3);
+	})
 
-		expect(yahtzee.countInArray([0,0,0,0,0], 0 , true)).toBe(5);
-	})
-	it("upperBoard Twos function", function (){
+	it("is x of a kind", function () {
 		
-		expect(yahtzee.countInArray([1,1,1,1,1], 1 , true)).toBe(10);
+		expect(catalyst.yahtzee.CardServices.isXOfAKind( [ {value : 1}, {value: 2}, {value: 1}, {value: 3}, {value: 1}], 3 )).toBe(true);
 	})
-	it("upperBoard Ones function", function (){
+
+	it("full house", function () {
 		
-		expect(yahtzee.countInArray([2,2,2,2,2], 2 , true)).toBe(15);
+		expect(catalyst.yahtzee.CardServices.isFullHouse( [ {value : 1}, {value: 3}, {value: 1}, {value: 3}, {value: 1}] )).toBe(true);
 	})
-	it("upperBoard Ones function", function (){
+
+	it("full house fail", function () {
 		
-		expect(yahtzee.countInArray([3,3,3,3,3], 3 , true)).toBe(20);
+		expect(catalyst.yahtzee.CardServices.isFullHouse( [ {value : 2}, {value: 3}, {value: 1}, {value: 3}, {value: 1}] )).toBe(false);
 	})
-	it("upperBoard Ones function", function (){
-		
-		expect(yahtzee.countInArray([4,4,4,4,4], 4 , true)).toBe(25);
-	})
-	it("upperBoard Ones function", function (){
-		
-		expect(yahtzee.countInArray([5,5,5,5,5], 5 , true)).toBe(30);
-	}) */
 	
+	it("small straight ", function () {
+		
+		expect(catalyst.yahtzee.CardServices.isStraight( [ {value : 1}, {value: 2}, {value: 1}, {value: 3}, {value: 4}], 4 )).toBe(true);
+	})
+	
+	it("large straight ", function () {
+		
+		expect(catalyst.yahtzee.CardServices.isStraight( [ {value : 1}, {value: 2}, {value: 5}, {value: 3}, {value: 4}], 5 )).toBe(true);
+	})
+
+	it("straight fail", function () {
+		
+		expect(catalyst.yahtzee.CardServices.isStraight( [ {value : 1}, {value: 2}, {value: 1}, {value: 1}, {value: 4}], 4 )).toBe(false);
+	})
 })
