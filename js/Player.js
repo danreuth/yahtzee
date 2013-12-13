@@ -10,11 +10,7 @@ catalyst.yahtzee.Player = (function (ScoreCard) {
 			return playerName;
 		};
 
-		this.endTurn = function( box ) {
-			this.scoreCard.fillBox( box );
-			this.scoreCard.zeroScores();
-			this.scoreCard.calcTotals();
-		};
+		
 	}
 
 	return Player;

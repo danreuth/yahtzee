@@ -29,6 +29,22 @@ catalyst.yahtzee.Display = (function () {
           $( card.rows[i].selector + 'Value').css({"background-color":"green"});
         }
       }
+    },
+
+    gameOver: function() {
+      $( '#diceContainer').text("Game Over");
+    },
+
+    endTurn: function() {
+      $( '#message' ).show();
+    },
+
+    newTurn: function() {
+      $( '#message' ).hide();
+    },
+
+    setUp: function() {
+      $( '#message' ).hide();
     }
    
   };   
