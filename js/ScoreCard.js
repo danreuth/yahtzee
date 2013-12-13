@@ -287,7 +287,6 @@ catalyst.yahtzee.ScoreCard = (function (CONSTANTS, Dice) {
 			}
 			return total;
 		}
-
 		var totalDice = function( diceSet ) {
 			var total = 0;
 			for(var i = 0; i < diceSet.length; i++) {
