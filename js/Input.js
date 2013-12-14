@@ -20,6 +20,14 @@ catalyst.yahtzee.Input = (function (Game) {
     scoreBoxClick: function() {
       var element = '#' + $(this).attr('id');
       Game.scoreBoxClicked( element.substring(0, element.length - 5) );
+    },
+
+    numPlayerClick: function() {
+      Game.selectNumPlayers( parseInt( $(this).attr('id')) );
+    },
+
+    playerNameClick: function() {
+      Game.enterPlayerName($('#playerName').val());
     }
   };   
 

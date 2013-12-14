@@ -3,6 +3,10 @@ catalyst.yahtzee = catalyst.yahtzee || {};
 
 catalyst.yahtzee.CardServices = (function (CONSTANTS, Dice, Roller, Display, Player) {
 	return {
+		getGrandTotal : function( card ) {
+			return card.rows[18].value;
+		},
+
 		updateScores : function( diceSet, card ) {
 			for(var i = 0; i < card.rows.length; i++) {
 				if(card.rows[i].filled === false) {

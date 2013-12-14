@@ -6,7 +6,11 @@ catalyst.yahtzee.Game = (function (CONSTANTS, Dice, Roller, Display, Player, Car
 	for( var i = 0; i < CONSTANTS.NUMBER_DICE; i++ ) {
 		diceArray[i] = new Dice( CONSTANTS.DICE_SIDES );
 	}
-  var player = new Player();
+  var numberPlayers;
+  var playerLoad;
+  var players = [];
+  var player;
+  var currentPlayer;
   var turn = 1;
   var roll = 1;
   function resetDice() {
@@ -16,9 +20,28 @@ catalyst.yahtzee.Game = (function (CONSTANTS, Dice, Roller, Display, Player, Car
   }
 
   function endGame() {
-    Display.gameOver();
+    Display.gameOver( calcWinner() );
   }
 
+  function calcWinner() {
+    var highScore = 0;
+    var winner;
+    for(var i = 1; i <= numberPlayers; i++) {
+      if(CardServices.getGrandTotal( players[i].scoreCard ) > highScore) {
+        highScore = CardServices.getGrandTotal( players[i].scoreCard);
+        winner = players[i].getPlayerName();
+      }
+    }
+    return winner;
+  }
+
+  function startGame() {
+    Display.startGame();
+    currentPlayer = 1;
+    player = players[currentPlayer];
+    Display.showScoreCard( player.scoreCard );
+    Display.showPlayerName( player.getPlayerName());
+  }
 	return {
     rollDice: function() {
     	if(roll <= 3) {
@@ -39,7 +62,6 @@ catalyst.yahtzee.Game = (function (CONSTANTS, Dice, Roller, Display, Player, Car
     },
     setUp: function() {
       Display.setUp();
-      Display.showScoreCard( player.scoreCard );
     },
     scoreBoxClicked: function( box ) {
       if(CardServices.isBoxFilled( box, player.scoreCard ) !== true && roll != 1 ) {
@@ -47,16 +69,39 @@ catalyst.yahtzee.Game = (function (CONSTANTS, Dice, Roller, Display, Player, Car
         CardServices.fillBox( box, player.scoreCard );
         CardServices.zeroScores( player.scoreCard );
         CardServices.calcTotals( player.scoreCard );
-        Display.showScoreCard( player.scoreCard );
+        
         resetDice();
         Display.showDice( diceArray );
         roll = 1;
-        turn++;
+        if(currentPlayer === numberPlayers) {
+          currentPlayer = 1;
+          turn++;
+        } else {
+          currentPlayer++;
+        }
+        player = players[currentPlayer];
         Display.newTurn();
+        Display.showScoreCard( player.scoreCard );
+        Display.showPlayerName( player.getPlayerName());
         Display.rollNumber( 0 );
         if(turn === 14) {
           endGame();
         }
+      }
+    },
+    selectNumPlayers: function( numPlayers ) {
+      numberPlayers = numPlayers;
+      playerLoad = 1;
+      Display.inputPlayerNames();
+      
+    },
+    enterPlayerName: function( playerName ) {
+      console.log(playerName);
+      players[playerLoad] = new Player( playerName );
+      console.log(players[playerLoad]);
+      playerLoad++;
+      if(playerLoad > numberPlayers) {
+        startGame();
       }
     }
   };  

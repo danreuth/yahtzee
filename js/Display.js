@@ -3,6 +3,9 @@ catalyst.yahtzee = catalyst.yahtzee || {};
 
 catalyst.yahtzee.Display = (function () {
 	
+  function clearScreen() {
+      $( 'div' ).hide();
+  }
 	return {
     showDice: function( diceSet ) {
       for(var i = 0; i < diceSet.length; i++) {
@@ -32,8 +35,14 @@ catalyst.yahtzee.Display = (function () {
       }
     },
 
-    gameOver: function() {
-      $( '#diceContainer').text("Game Over");
+    
+    showPlayerName: function ( name ) {
+      $( '#displayPlayerName' ).text( name );
+    },
+    gameOver: function( winner ) {
+      clearScreen();
+      $( '#endGame').text("Game Over!!!/n" + winner + " wins!!!");
+      $( '#endGame').show();
     },
 
     endTurn: function() {
@@ -45,8 +54,17 @@ catalyst.yahtzee.Display = (function () {
     },
 
     setUp: function() {
-      $( '#message' ).hide();
+      clearScreen();
+      $( '#selectNumberPlayers' ).show();
+      $( '.numPlayer' ).show();
+     /* $( '#message' ).hide();
       $( '#rollNumber' ).hide();
+      $( '#diceContainer' ).hide();
+      $( '#rollButton' ).hide();
+      $( '#scoreCard' ).hide();
+      $( '#enterPlayerNames' ).hide();
+      $( '#displayPlayerName' ).hide(); */
+      
     },
 
     rollNumber: function( roll ) {
@@ -56,6 +74,17 @@ catalyst.yahtzee.Display = (function () {
         $( '#rollNumber' ).text("Roll " + roll );
         $( '#rollNumber' ).show();
       }
+    },
+     inputPlayerNames: function() {
+      $( '#selectNumberPlayers' ).hide();
+      $( '#enterPlayerNames' ).show();
+    },
+    startGame: function() {
+      $( '#enterPlayerNames' ).hide();
+      $( '#diceContainer' ).show();
+      $( '#scoreCard' ).show();
+      $( '#rollButton' ).show();
+      $( '#displayPlayerName' ).show();
     }
    
   };   
