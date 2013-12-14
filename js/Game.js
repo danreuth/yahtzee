@@ -37,6 +37,8 @@ catalyst.yahtzee.Game = (function (CONSTANTS, Dice, Roller, Display, Player, Car
 
   function startGame() {
     Display.startGame();
+    roll = 1;
+    turn = 1;
     currentPlayer = 1;
     player = players[currentPlayer];
     Display.showScoreCard( player.scoreCard );
@@ -100,8 +102,10 @@ catalyst.yahtzee.Game = (function (CONSTANTS, Dice, Roller, Display, Player, Car
       players[playerLoad] = new Player( playerName );
       console.log(players[playerLoad]);
       playerLoad++;
+      Display.upDatePlayerNamePrompt( playerLoad );
       if(playerLoad > numberPlayers) {
-        startGame();
+        Display.startScreen(startGame);
+        
       }
     }
   };  

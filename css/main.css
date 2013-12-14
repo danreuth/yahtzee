@@ -1,34 +1,41 @@
-#diceContainer img {
+.held {
+	background-color: black;
+}
+
+.notHeld {
+	background-color: white;
+}
+.dice {
 	height: 100px;
 	width: 100px;
+	background-size: 100% 100%;
+}
+.numPlayer {
+	height: 100px;
+	width: 100px;
+	background-size: 100% 100%;
+	margin:0 auto;
+	float:left;
+}
+.dice1 {
+	background-image:url('../images/1.png');
+}
+.dice2 {
+	background-image:url('../images/2.png');
+}
+.dice3 {
+	background-image:url('../images/3.png');
+}
+.dice4 {
+	background-image:url('../images/4.png');
+}
+.dice5 {
+	background-image:url('../images/5.png');
+}
+.dice6 {
+	background-image:url('../images/6.png');	
 }
 
-#scoreCard td {
-	width: 200px;
-	float: left;
-	font-size: 1.5em;
-}
-
-/*  Working on css class switch
-.1 {
-	background-image:url('images/1.png');
-}
-.2 {
-	background-image:url('images/2.png');
-}
-.3 {
-	background-image:url('images/3.png');
-}
-.4 {
-	background-image:url('images/4.png');
-}
-.5 {
-	background-image:url('images/5.png');
-}
-.6 {
-	background-image:url('images/6.png');	
-}
-*/
 .scoreDesc {
 	background-color: grey;
 }
@@ -43,5 +50,74 @@
 
 .scoreBox {
 	background-color: green;
+}
+.fullWidthWrapper {
+	width: 800px;
+	margin:0 auto;
+}
+#mainContent {
+	width: 1000px;
+	height: 625px;
+	margin: 0 auto;
+	border-width: 15px;
+	border-color: #d6d6ff;
+	border-style: solid;
+	border-radius: 20px;
+	background-color: #d6d6ff;
+}
+
+
+
+#title {
+	width: 600px;
+	margin:0 auto;
+	font-size:3em;
+	text-align:center;
+}
+
+#selectNumberPlayers {
+	width: 600px;
+	margin:0 auto;
+	text-align:center;
+	font-size:1.5em;
+}
+
+#numPlayersWrapper {
+	width: 400px;
+	margin:0 auto;
+}
+
+#scoreCard td {
+	width: 200px;
+	float: left;
+	font-size: 1.5em;
+}
+
+#enterPlayerNames {
+	width:500px;
+	margin:0 auto;
+}
+
+#enterPlayerNames div {
+	width:500px;
+	margin:0 auto;
+	text-align:center;
+}
+
+#playerName {
+	display: block;
+    margin : 0 auto;
+}
+
+#playerNameSubmit {
+	display: block;
+	margin: 0 auto;
+}
+
+#startScreen {
+	width: 800px;
+	margin: 0 auto;
+	text-align: center;
+	font-size: 5em;
 }
 

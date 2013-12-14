@@ -4,18 +4,27 @@ catalyst.yahtzee = catalyst.yahtzee || {};
 catalyst.yahtzee.Display = (function () {
 	
   function clearScreen() {
-      $( 'div' ).hide();
+      $( '.hideable' ).hide();
   }
 	return {
     showDice: function( diceSet ) {
       for(var i = 0; i < diceSet.length; i++) {
        // From Adam : change this to use CSS images and class switching 
+       var pips = $( '#die' + i ).attr( 'pips' );
+       $( '#die' + i ).toggleClass('dice' + pips, false);
+       $( '#die' + i ).toggleClass('dice' + diceSet[i].value, true);
+       $( '#die' + i ).attr( 'pips', diceSet[i].value );
         if( diceSet[i].shouldRoll() === true ) {
-        //  $( '#die' + i ).toggleClass(diceSet[1].value.toString(), true);
-          $( '#die' + i ).attr( 'src', 'images/' + diceSet[i].value + '.png' );
+
+         $( '#die' + i ).toggleClass('held', false);
+         $( '#die' + i ).toggleClass('notHeld', true);
+        //  $( '#die' + i ).attr( 'src', 'images/' + diceSet[i].value + '.png' );
         } else {
-          $( '#die' + i ).attr( 'src', 'images/' + diceSet[i].value + 'dark.png' );
+          $( '#die' + i ).toggleClass('held', true);
+          $( '#die' + i ).toggleClass('notHeld', false);
+      //    $( '#die' + i ).attr( 'src', 'images/' + diceSet[i].value + 'dark.png' );
         }
+      // $( '#die' + i ).toggleClass()
       }
 
       
@@ -43,6 +52,7 @@ catalyst.yahtzee.Display = (function () {
       clearScreen();
       $( '#endGame').text("Game Over!!!/n" + winner + " wins!!!");
       $( '#endGame').show();
+      $( '#playItAgainSam').show();
     },
 
     endTurn: function() {
@@ -78,13 +88,23 @@ catalyst.yahtzee.Display = (function () {
      inputPlayerNames: function() {
       $( '#selectNumberPlayers' ).hide();
       $( '#enterPlayerNames' ).show();
+      $( '#playerNamePrompt' ).text("Player 1 Please Enter Your Name");
     },
     startGame: function() {
-      $( '#enterPlayerNames' ).hide();
+      clearScreen();
       $( '#diceContainer' ).show();
       $( '#scoreCard' ).show();
       $( '#rollButton' ).show();
       $( '#displayPlayerName' ).show();
+    },
+    upDatePlayerNamePrompt: function( playerNumber ) {
+      $( '#playerNamePrompt' ).text("Player " + playerNumber + " Please Enter Your Name");
+    },
+
+    startScreen: function(startFunc) {
+      clearScreen();
+      $( '#startScreen' ).show();
+      setTimeout(startFunc, 3000);
     }
    
   };   

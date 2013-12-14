@@ -28,6 +28,10 @@ catalyst.yahtzee.Input = (function (Game) {
 
     playerNameClick: function() {
       Game.enterPlayerName($('#playerName').val());
+    },
+
+    playAgainClick: function() {
+      Game.setUp();
     }
   };   
 

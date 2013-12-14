@@ -6,6 +6,7 @@ function init() {
 	$( '.scoreBox').click(catalyst.yahtzee.Input.scoreBoxClick);
 	$( '.numPlayer').click(catalyst.yahtzee.Input.numPlayerClick);
 	$( '#playerNameSubmit').click(catalyst.yahtzee.Input.playerNameClick);
+	$( '#playItAgainSam').click(catalyst.yahtzee.Input.playAgainClick);
 	
 /*	
 	$( '#acesValue' ).click(catalyst.yahtzee.Input.die4Click); */
