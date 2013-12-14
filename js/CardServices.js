@@ -24,7 +24,7 @@ catalyst.yahtzee.CardServices = (function (CONSTANTS, Dice, Roller, Display, Pla
 			}
 			card.rows[8].value = card.rows[6].value + card.rows[7].value;
 			total = 0;
-			card.rows[16].value = CONSTANTS.YAHTZEE_BONUS_SCORE * card.numberBonusYahtzees;
+			card.rows[16].value = CONSTANTS.YAHTZEE_BONUS_SCORE * card.rows[16].numberBonusYahtzees;
 			for(var j = 9; j < 17; j++) {
 				total += card.rows[j].value;
 			}
@@ -34,14 +34,14 @@ catalyst.yahtzee.CardServices = (function (CONSTANTS, Dice, Roller, Display, Pla
 		},
 
 		fillBox : function ( box, card ) {
-			if(card.bonusYahtzeeInPlay) {
-				card.numberBonusYahtzees++;
-				card.bonusYahtzeeInPlay = false;
+			if(card.rows[16].bonusYahtzeeInPlay) {
+				card.rows[16].numberBonusYahtzees++;
+				card.rows[16].bonusYahtzeeInPlay = false;
 			}
 			for(var i = 0; i < card.rows.length; i++) {
 				if( card.rows[i].selector === box ) {
 					if(box === CONSTANTS.YAHTZEE_SELECTOR && card.rows[i].filled === false && card.rows[i].value === CONSTANTS.YAHTZEE_SCORE ) {
-						card.haveFirstYahtzee = true;
+						card.rows[16].haveFirstYahtzee = true;
 					}
 					card.rows[i].filled = true;
 				}

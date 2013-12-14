@@ -3,9 +3,7 @@ catalyst.yahtzee = catalyst.yahtzee || {};
 
 catalyst.yahtzee.ScoreCard = (function (CONSTANTS, Dice, CardServices) {
 	function ScoreCard() {
-		this.haveFirstYahtzee = false;
-		this.numberBonusYahtzees = 0;
-		this.bonusYahtzeeInPlay = false;
+		
 		this.rows = [
 		{
 			text: CONSTANTS.ACES,
@@ -185,11 +183,14 @@ catalyst.yahtzee.ScoreCard = (function (CONSTANTS, Dice, CardServices) {
 			value: 0,
 			holdValue: 0,
 			filled: false,
+			haveFirstYahtzee: false,
+			numberBonusYahtzees: 0,
+			bonusYahtzeeInPlay: false,
 			selector: CONSTANTS.YAHTZEE_BONUS_SELECTOR,
 			calculate: function( diceSet ) {
 
-				if(CardServices.isXOfAKind( diceSet, 5 ) && haveFirstYahtzee === true ) {
-					bonusYahtzeeInPlay = true;
+				if(CardServices.isXOfAKind( diceSet, 5 ) && this.haveFirstYahtzee === true ) {
+					this.bonusYahtzeeInPlay = true;
 					
 				} 
 			}
