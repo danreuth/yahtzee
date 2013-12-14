@@ -4,7 +4,7 @@ catalyst.yahtzee = catalyst.yahtzee || {};
 catalyst.yahtzee.Display = (function () {
 	
 	return {
-    showDice: function( diceSet) {
+    showDice: function( diceSet ) {
       for(var i = 0; i < diceSet.length; i++) {
        // From Adam : change this to use CSS images and class switching 
         if( diceSet[i].shouldRoll() === true ) {
@@ -14,6 +14,7 @@ catalyst.yahtzee.Display = (function () {
           $( '#die' + i ).attr( 'src', 'images/' + diceSet[i].value + 'dark.png' );
         }
       }
+
       
       
     },
@@ -45,6 +46,16 @@ catalyst.yahtzee.Display = (function () {
 
     setUp: function() {
       $( '#message' ).hide();
+      $( '#rollNumber' ).hide();
+    },
+
+    rollNumber: function( roll ) {
+      if( roll === 0) {
+        $( '#rollNumber' ).hide();
+      } else {
+        $( '#rollNumber' ).text("Roll " + roll );
+        $( '#rollNumber' ).show();
+      }
     }
    
   };   

@@ -24,6 +24,7 @@ catalyst.yahtzee.Game = (function (CONSTANTS, Dice, Roller, Display, Player, Car
     	if(roll <= 3) {
         Roller.rollDice( diceArray );
         Display.showDice( diceArray );
+        Display.rollNumber( roll );
         CardServices.updateScores( diceArray, player.scoreCard );
         Display.showScoreCard( player.scoreCard );
         roll++;
@@ -52,6 +53,7 @@ catalyst.yahtzee.Game = (function (CONSTANTS, Dice, Roller, Display, Player, Car
         roll = 1;
         turn++;
         Display.newTurn();
+        Display.rollNumber( 0 );
         if(turn === 14) {
           endGame();
         }
