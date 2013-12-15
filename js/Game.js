@@ -20,7 +20,14 @@ catalyst.yahtzee.Game = (function (CONSTANTS, Dice, Roller, Display, Player, Car
   }
 
   function endGame() {
-    Display.gameOver( calcWinner() );
+    var winner = calcWinner();
+    var scoreData = [];
+    for(var i = 1; i <= numberPlayers; i++) {
+      var name = players[i].getPlayerName();
+      var score = CardServices.getGrandTotal(players[i].scoreCard);
+      scoreData[i - 1] = {name: name, score: score}
+    }
+    Display.gameOver( winner, scoreData );
   }
 
   function calcWinner() {
@@ -38,24 +45,23 @@ catalyst.yahtzee.Game = (function (CONSTANTS, Dice, Roller, Display, Player, Car
   function startGame() {
     Display.startGame();
     roll = 1;
-    turn = 1;
+    turn = 13;// Set back to one for production
     currentPlayer = 1;
     player = players[currentPlayer];
     Display.showScoreCard( player.scoreCard );
     Display.showPlayerName( player.getPlayerName());
+    Display.rollNumber( roll );
   }
 	return {
     rollDice: function() {
     	if(roll <= 3) {
         Roller.rollDice( diceArray );
         Display.showDice( diceArray );
-        Display.rollNumber( roll );
+        
         CardServices.updateScores( diceArray, player.scoreCard );
         Display.showScoreCard( player.scoreCard );
         roll++;
-        if(roll === 4) {
-          Display.endTurn();
-        }
+        Display.rollNumber( roll );
       } 
     },
     dieClicked: function( dieNumber ) {
@@ -82,10 +88,9 @@ catalyst.yahtzee.Game = (function (CONSTANTS, Dice, Roller, Display, Player, Car
           currentPlayer++;
         }
         player = players[currentPlayer];
-        Display.newTurn();
         Display.showScoreCard( player.scoreCard );
         Display.showPlayerName( player.getPlayerName());
-        Display.rollNumber( 0 );
+        Display.rollNumber( roll );
         if(turn === 14) {
           endGame();
         }
@@ -98,9 +103,7 @@ catalyst.yahtzee.Game = (function (CONSTANTS, Dice, Roller, Display, Player, Car
       
     },
     enterPlayerName: function( playerName ) {
-      console.log(playerName);
       players[playerLoad] = new Player( playerName );
-      console.log(players[playerLoad]);
       playerLoad++;
       Display.upDatePlayerNamePrompt( playerLoad );
       if(playerLoad > numberPlayers) {

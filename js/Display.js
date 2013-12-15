@@ -46,22 +46,25 @@ catalyst.yahtzee.Display = (function () {
 
     
     showPlayerName: function ( name ) {
-      $( '#displayPlayerName' ).text( name );
+      $( '#displayPlayerName' ).text( name + "'s Turn" );
     },
-    gameOver: function( winner ) {
+    gameOver: function( winner, data ) {
       clearScreen();
-      $( '#endGame').text("Game Over!!!/n" + winner + " wins!!!");
+      for(var i = 0; i < data.length; i++) {
+        $( '#endGame').append("<p>" + data[i].name + " scored " + data[i].score + "</p>");
+      }
+      $( '#endGame').append("<p>Game Over!!!</p><p>" + winner + " wins!!!</p>");
       $( '#endGame').show();
       $( '#playItAgainSam').show();
     },
 
-    endTurn: function() {
-      $( '#message' ).show();
-    },
+   // endTurn: function() {
+   //   $( '#message' ).show();
+   // },
 
-    newTurn: function() {
-      $( '#message' ).hide();
-    },
+   // newTurn: function() {
+   //   $( '#message' ).hide();
+   // },
 
     setUp: function() {
       clearScreen();
@@ -78,12 +81,20 @@ catalyst.yahtzee.Display = (function () {
     },
 
     rollNumber: function( roll ) {
-      if( roll === 0) {
-        $( '#rollNumber' ).hide();
+      if( roll === 1) {
+        $( '#rollButton' ).text("Make First Roll" );
+      } else if ( roll === 2 ) {
+        $( '#rollButton' ).text("Make Second Roll" );
+      } else if (roll === 3) {
+        $( '#rollButton' ).text("Make Third Roll" );
       } else {
-        $( '#rollNumber' ).text("Roll " + roll );
-        $( '#rollNumber' ).show();
+        $( '#rollButton' ).text("Out Of Rolls" );
       }
+       // $( '#rollNumber' ).hide();
+     // } else {
+       // $( '#rollButton' ).text("Make " + roll + "stRoll " + roll );
+       // $( '#rollNumber' ).show();
+      
     },
      inputPlayerNames: function() {
       $( '#selectNumberPlayers' ).hide();
@@ -94,7 +105,7 @@ catalyst.yahtzee.Display = (function () {
       clearScreen();
       $( '#diceContainer' ).show();
       $( '#scoreCard' ).show();
-      $( '#rollButton' ).show();
+      $( '#rollButtonContainer' ).show();
       $( '#displayPlayerName' ).show();
     },
     upDatePlayerNamePrompt: function( playerNumber ) {
@@ -104,7 +115,7 @@ catalyst.yahtzee.Display = (function () {
     startScreen: function(startFunc) {
       clearScreen();
       $( '#startScreen' ).show();
-      setTimeout(startFunc, 3000);
+      setTimeout(startFunc, 1);  //Change to 3000 for production
     }
    
   };   

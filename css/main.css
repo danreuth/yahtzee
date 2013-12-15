@@ -9,6 +9,7 @@
 	height: 100px;
 	width: 100px;
 	background-size: 100% 100%;
+	margin: 5px;
 }
 .numPlayer {
 	height: 100px;
@@ -71,7 +72,8 @@
 #title {
 	width: 600px;
 	margin:0 auto;
-	font-size:3em;
+	margin-bottom: 30px;
+	font-size:4em;
 	text-align:center;
 }
 
@@ -86,11 +88,13 @@
 	width: 400px;
 	margin:0 auto;
 }
-
+#scoreCard {
+	width:450px;
+	float:left;
+}
 #scoreCard td {
 	width: 200px;
-	float: left;
-	font-size: 1.5em;
+	font-size: 1.2em;
 }
 
 #enterPlayerNames {
@@ -119,5 +123,15 @@
 	margin: 0 auto;
 	text-align: center;
 	font-size: 5em;
+}
+
+#playerInfo {
+	width: 240px;
+	float:left;
+}
+
+#diceContainer {
+	
+	float:right;
 }
 
