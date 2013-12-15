@@ -36,10 +36,10 @@ catalyst.yahtzee.Display = (function () {
         $( card.rows[i].selector + 'Text' ).text( card.rows[i].text );
         $( card.rows[i].selector + 'Value' ).text( card.rows[i].value );
         if(card.rows[i].total === undefined && card.rows[i].filled === false) {
-          $( card.rows[i].selector + 'Value').css({"background-color":"red"});
+          $( card.rows[i].selector + 'Value').css({"background-color":"#6D87BB"});
         }
         if(card.rows[i].filled === true) {
-          $( card.rows[i].selector + 'Value').css({"background-color":"green"});
+          $( card.rows[i].selector + 'Value').css({"background-color":"#593C06"});
         }
       }
     },
@@ -50,10 +50,11 @@ catalyst.yahtzee.Display = (function () {
     },
     gameOver: function( winner, data ) {
       clearScreen();
+      $( '#endGame').text("");
       for(var i = 0; i < data.length; i++) {
-        $( '#endGame').append("<p>" + data[i].name + " scored " + data[i].score + "</p>");
+        $( '#endGame').append('<p class="finalScoreBoard">' + data[i].name + ' scored ' + data[i].score + '</p>');
       }
-      $( '#endGame').append("<p>Game Over!!!</p><p>" + winner + " wins!!!</p>");
+      $( '#endGame').append('<p class="winnerMessage">Game Over!!!</p><p class="winnerMessage">' + winner + ' wins!!!</p>');
       $( '#endGame').show();
       $( '#playItAgainSam').show();
     },

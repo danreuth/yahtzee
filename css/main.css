@@ -1,5 +1,5 @@
 .held {
-	background-color: black;
+	background-color: red;
 }
 
 .notHeld {
@@ -9,7 +9,11 @@
 	height: 100px;
 	width: 100px;
 	background-size: 100% 100%;
-	margin: 5px;
+	
+
+	border-color: #E8CA91;
+	border-style: solid;
+	border-radius: 15px;
 }
 .numPlayer {
 	height: 100px;
@@ -20,6 +24,7 @@
 }
 .dice1 {
 	background-image:url('../images/1.png');
+
 }
 .dice2 {
 	background-image:url('../images/2.png');
@@ -38,33 +43,40 @@
 }
 
 .scoreDesc {
-	background-color: grey;
+	background-color: #3B4354;
 }
 
 .totalBox {
-	background-color: blue;
+	background-color: #3B4354;
 }
 
 .totalDesc {
-	background-color: blue;
+	background-color: #3B4354;
 }
 
 .scoreBox {
-	background-color: green;
+	background-color: #6D87BB;
 }
 .fullWidthWrapper {
 	width: 800px;
 	margin:0 auto;
+}
+.finalScoreBoard {
+
+}
+
+.winnerMessage {
+	font-size: 2em;
 }
 #mainContent {
 	width: 1000px;
 	height: 625px;
 	margin: 0 auto;
 	border-width: 15px;
-	border-color: #d6d6ff;
+	border-color: #E8CA91;
 	border-style: solid;
 	border-radius: 20px;
-	background-color: #d6d6ff;
+	background-color: #E8CA91;
 }
 
 
@@ -91,10 +103,12 @@
 #scoreCard {
 	width:450px;
 	float:left;
+	
 }
 #scoreCard td {
 	width: 200px;
 	font-size: 1.2em;
+	color: #ffffff;
 }
 
 #enterPlayerNames {
@@ -135,3 +149,18 @@
 	float:right;
 }
 
+#endGame {
+	width:500px;
+	margin:0 auto;
+	text-align:center;
+}
+
+#playItAgainSam {
+	width:500px;
+	margin:0 auto;
+	text-align:center;
+}
+
+#displayPlayerName {
+	font-size:1.5em;
+}
