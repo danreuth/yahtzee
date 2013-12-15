@@ -45,7 +45,7 @@ catalyst.yahtzee.Game = (function (CONSTANTS, Dice, Roller, Display, Player, Car
   function startGame() {
     Display.startGame();
     roll = 1;
-    turn = 12;// Set back to one for production
+    turn = 1;// Set back to one for production
     currentPlayer = 1;
     player = players[currentPlayer];
     Display.showScoreCard( player.scoreCard );

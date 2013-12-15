@@ -116,7 +116,7 @@ catalyst.yahtzee.Display = (function () {
     startScreen: function(startFunc) {
       clearScreen();
       $( '#startScreen' ).show();
-      setTimeout(startFunc, 1);  //Change to 3000 for production
+      setTimeout(startFunc, 3000);  //Change to 3000 for production
     }
    
   };   
