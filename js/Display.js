@@ -101,6 +101,7 @@ catalyst.yahtzee.Display = (function () {
       $( '#selectNumberPlayers' ).hide();
       $( '#enterPlayerNames' ).show();
       $( '#playerNamePrompt' ).text("Player 1 Please Enter Your Name");
+     // $( 'playerName' ).val("");
     },
     startGame: function() {
       clearScreen();
@@ -111,6 +112,7 @@ catalyst.yahtzee.Display = (function () {
     },
     upDatePlayerNamePrompt: function( playerNumber ) {
       $( '#playerNamePrompt' ).text("Player " + playerNumber + " Please Enter Your Name");
+      $( '#playerName' ).val("");
     },
 
     startScreen: function(startFunc) {
