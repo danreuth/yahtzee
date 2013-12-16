@@ -64,4 +64,22 @@ describe("ScoreCard", function () {
 		
 		expect(catalyst.yahtzee.CardServices.isStraight( [ {value : 1}, {value: 2}, {value: 1}, {value: 1}, {value: 4}], 4 )).toBe(false);
 	})
+
+	it("calculate totals", function () {
+		var card = new catalyst.yahtzee.ScoreCard();
+		card.rows[0].value = 3;
+		card.rows[1].value = 6;
+		card.rows[2].value = 9;
+		card.rows[3].value = 12;
+		card.rows[4].value = 15;
+		card.rows[5].value = 18;
+		card.rows[9].value = 20;
+		card.rows[10].value = 20
+		card.rows[11].value = 25;
+		card.rows[12].value = 30;
+		card.rows[13].value = 40;
+		card.rows[14].value = 50;
+		card.rows[15].value = 10;
+		expect(catalyst.yahtzee.CardServices.calcTotals( this.card )).toBe(293);
+	})
 })
