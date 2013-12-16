@@ -65,8 +65,10 @@ catalyst.yahtzee.Game = (function (CONSTANTS, Dice, Roller, Display, Player, Car
       } 
     },
     dieClicked: function( dieNumber ) {
-    	diceArray[dieNumber].toggleRoll();
-    	Display.showDice( diceArray );
+      if(roll != 1) {
+    	 diceArray[dieNumber].toggleRoll();
+    	 Display.showDice( diceArray );
+      }
     },
     setUp: function() {
       Display.setUp();
