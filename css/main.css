@@ -1,3 +1,9 @@
+button {
+	background-color: #6D87BB;
+	border: 0px;
+	font-size:1.5em;
+}
+
 .held {
 	background-color: red;
 }
@@ -114,20 +120,25 @@
 	color: #ffffff;
 }
 
-#enterPlayerNames {
-	width:500px;
-	margin:0 auto;
-}
+
 
 #enterPlayerNames div {
 	width:500px;
-	margin:0 auto;
+	margin-top:100px;
+	margin-bottom:0px;
+	margin-left:auto;
+	margin-right:auto;
 	text-align:center;
 }
 
+#playerNamePrompt {
+	font-size:1.5em;
+}
 #playerName {
 	display: block;
-    margin : 0 auto;
+    margin : 20px auto;
+    font-size:1.2em;
+
 }
 
 #playerNameSubmit {
