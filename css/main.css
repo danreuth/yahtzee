@@ -91,14 +91,17 @@
 
 #selectNumberPlayers {
 	width: 600px;
-	margin:0 auto;
+	margin-top:100px;
+	margin-bottom:50px;
+	margin-left:auto;
+	margin-right:auto;
 	text-align:center;
-	font-size:1.5em;
+	font-size:2em;
 }
 
 #numPlayersWrapper {
 	width: 400px;
-	margin:0 auto;
+	margin:50px auto;
 }
 #scoreCard {
 	width:450px;
